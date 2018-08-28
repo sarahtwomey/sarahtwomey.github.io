@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Sarah Twomey</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!--order is important-->
+        <!--necessary to run: bootstrap css, jquery, bootstrap js-->
+        <!--optional but recommended: popper-->
+        <!--optional: theme-->
+        
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <!--bootstrap css-->
+        
+        <!--bootstrap theme-->
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">
+        
+        <style>
+            @media (min-width: 768px) {
+                .container {
+                    max-width: 730;
+                    
+                }
+            }
+            .header {
+                margin-top: 30px;
+                border-bottom: 1px solid #EEE;
+            }
+            .header h2 {
+                margin-top: 0;
+                line-height: 40px;
+            }
+            #stage {
+                padding: 15px;
+            }
+        </style>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> <!--jquery-->
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script> <!--bootstrap popper-->
+        
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <!--bootstrap javascript-->
+        
+        <script>
+            function stageContent(content) {
+                $("#stage").html(content); 
+            }
+            
+            function evaluateHash() {
+                if(location.hash == "#about") {
+                    $.get("about.html", stageContent);
+                } else if(location.hash == "#contact") {
+                    $.get("contact.html", stageContent); 
+                } else if(location.hash == "#resume") {
+                    $.get("resume.html", stageContent);
+                } else if(location.hash === "#reddit"){
+                    $.get("reddit.html", stageContent);  
+                } else {
+                    $.get("home.html", stageContent); 
+                }
+            }
+            
+            $(function(){
+               evaluateHash(); 
+               window.onhashchange = evaluateHash; 
+            });
+        </script>
+        
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="header clearfix">
+                <nav role="navigation">     <!--navigation-->
+                    <ul class="nav nav-pills pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>  <!--normally would do about.html, but with this program we are going to code all of these-->
+                        <li><a href="#resume">Resume</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#reddit">Reddit Bot</a></li>
+                    </ul>
+                </nav>
+                
+                <h2 class="text-muted">Sarah Twomey</h2>
+            </div>
+            
+            <div id="stage"> <!--empty staged. filled with ajax request--></div>
+        </div>
+    </body>
+</html>
